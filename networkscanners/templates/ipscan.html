@@ -2,6 +2,11 @@
 {% block body %}
 
 <script type="text/javascript">
+ function autoRefresh_div()
+ {
+      $("#result").load("/networkscanners/ip_table/");// a function which will load data from other file after x seconds
+  }
+ setInterval('autoRefresh_div()', {{ settings.REFRESH_TIMER }}000);
 
  $(document).on('submit', '#start_scan', function(e){
         var opt = false;
@@ -18,10 +23,10 @@
                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
                 },
                 sucess:function(){
-
                 }
             });
-       this.reset();
+	this.reset();
+	$("#result").load("/networkscanners/ip_table/");
        }
 /*
        if ($('[name="optradio2"]').is(':checked')){
@@ -36,9 +41,10 @@
                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
                     },
                     sucess:function(){
-
                     }
            });
+	this.reset();
+	$("#result").load("/networkscanners/ip_table/");
        }
 */
        if ($('[name="optradio3"]').is(':checked')){
@@ -53,9 +59,10 @@
                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
                     },
                     sucess:function(){
-
                     }
            });
+	this.reset();
+	$("#result").load("/networkscanners/ip_table/");
        }
         if (opt) {
                 $('#status').text('Scan launched.').css ({'color': '#5bb75b', 'margin-left': '200px'});
@@ -64,24 +71,6 @@
         }
 
     });
-
-
-
-
-
-
-</script>
-
-<script type="text/javascript">
- function autoRefresh_div()
- {
-      $("#result").load("/networkscanners/ip_table/");// a function which will load data from other file after x seconds
-  }
- setInterval('autoRefresh_div()', {{ settings.REFRESH_TIMER }}000);
-
-
-
-
 
 </script>
 
@@ -117,26 +106,26 @@
                                 <input type="submit" class="btn btn-primary" value="Launch">
                                 <a href="/networkscanners/net_scan_schedule" class="btn btn-success">Scan Schedule</a>
                             </div>
-                        </form>
 
-                        <div class="controls">
-                            <p>Select your scanner(s) from the ones available:</p>
-                            <div class="checkbox inline checkbox-slider--b-flat checkbox-slider--b">
-                                <label>
-                                    <input name="optradio1" type="checkbox"><span>OpenVAS</span>
-                                </label>
-                            </div>
-                            <!--<div class="checkbox inline checkbox-slider&#45;&#45;b-flat checkbox-slider&#45;&#45;b">-->
-                                <!--<label>-->
-                                    <!--<input name="optradio2" type="checkbox"><span>Nmap</span>-->
-                                <!--</label>-->
-                            <!--</div>-->
-                            <div class="checkbox inline checkbox-slider--b-flat checkbox-slider--b">
-                                <label>
-                                    <input name="optradio3" type="checkbox"><span>Nmap_Vulners</span>
-                                </label>
-                            </div>
-                        </div>
+				<div class="controls">
+				    <p>Select your scanner(s) from the ones available:</p>
+				    <div class="checkbox inline checkbox-slider--b-flat checkbox-slider--b">
+					<label>
+					    <input name="optradio1" type="checkbox"><span>OpenVAS</span>
+					</label>
+				    </div>
+				    <!--<div class="checkbox inline checkbox-slider&#45;&#45;b-flat checkbox-slider&#45;&#45;b">-->
+					<!--<label>-->
+					    <!--<input name="optradio2" type="checkbox"><span>Nmap</span>-->
+					<!--</label>-->
+				    <!--</div>-->
+				    <div class="checkbox inline checkbox-slider--b-flat checkbox-slider--b">
+					<label>
+					    <input name="optradio3" type="checkbox"><span>Nmap_Vulners</span>
+					</label>
+				    </div>
+				</div>
+                        </form>
                         <div id='status'></div>
                     </div>
                 </div>
