@@ -23,7 +23,7 @@
             });
        this.reset();
        }
-       else if ($('[name="optradio2"]').is(':checked')){
+       if ($('[name="optradio2"]').is(':checked')){
             opt = true;
            $.ajax({
                     type:'POST',
@@ -39,7 +39,7 @@
                     }
            });
        }
-       else if ($('[name="optradio3"]').is(':checked')){
+       if ($('[name="optradio3"]').is(':checked')){
             opt = true;
            $.ajax({
                     type:'POST',
